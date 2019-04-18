@@ -1,0 +1,30 @@
+{
+  "name": "spotifywebapi",
+  "version": "1.0.0",
+  "description": "This is an application to search music by artist, using spotify web api",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "dev": "nodemon -e js,hbs ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "jjimenezv24@gmail.com"
+  },
+  "keywords": [
+    "spotify",
+    "web",
+    "api"
+  ],
+  "author": "Juan Carlos Jimenez",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "hbs": "^4.0.3",
+    "mongoose": "^5.5.1",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.11",
+    "request": "^2.88.0"
+  }
+}

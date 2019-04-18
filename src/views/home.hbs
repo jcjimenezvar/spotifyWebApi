@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src=""></script>
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+  <title>Spotify web API</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-succes bg-success mb-4">
+    <a href="/" class="navbar-brand text-light">Spotify Web Api</a>
+  </nav>
+  <div class="container">
+    <label class="text-success">Ingrese el nombre del album a buscar</label>
+    <div class="row mb-4">
+      <form class="form-inline" action="/search" method="POST">
+        <input type="text" class="form-control" placeholder="Album" name="search" id="search">
+        <button class="btn btn-success" type="submit">Buscar</button>
+      </form>
+    </div>
+    {{#if albumsBySearch}}
+    <div class="row">
+      <label class="text-success">{{information}}</label>
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Canciones disponibles</th>
+            <th>Ir</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each albumsBySearch}}
+          <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.total_tracks}}</td>
+            <td>
+              <a href="{{this.url}}" class="btn btn-success" target="_blank">Abrir</a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{/if}}
+  </div>
+</body>
+
+</html>
