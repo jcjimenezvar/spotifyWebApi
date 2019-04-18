@@ -29,13 +29,6 @@ app.use('/', indexRoutes);
 app.use('/home', indexRoutes);
 app.use('/search', indexRoutes);
 
-
-app.get('/', (req, res) => {
-  res.render('index')
-})
-
-
-
 //middleware
 app.use(morgan('dev'));
 app.use(express.urlencoded({

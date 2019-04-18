@@ -4,7 +4,7 @@ var request = require('request');
 const CONSTANTS = require('../constants/constants');
 var Albums = require('../models/albums');
 
-exports.searchMusic = async (req, res) => {
+exports.searchMusic = async (req, res) => { //Función principal  
     let body = await getToken();
     let search = req.body.search;
     let albumsBySearch;
@@ -24,7 +24,7 @@ exports.searchMusic = async (req, res) => {
     return schemaList;
 }
 
-let getToken = async () => {
+let getToken = async () => {//Esta función se encarga de consumir el API de spotify para obtener el token
     var authOptions = {
         url: 'https://accounts.spotify.com/api/token',
         form: {
@@ -52,6 +52,8 @@ let getToken = async () => {
     }
 }
 
+//Esta función se encarga de consumir el API de spotify para obtener los albumes
+// de acuerdo con el valor enviado desde el formulario
 let getAlbums = async (search, token) => {
     let options = {
         url: `https://api.spotify.com/v1/search?q=album:${search}&type=album&access_token=${token}`,
@@ -67,7 +69,7 @@ let getAlbums = async (search, token) => {
         })
     })
 }
-
+//Esta función se encarga de construir el objeto y alamacenarlo en un Arreglo 
 let processInformation = async (albumsBySearch) => {
     let listSize = albumsBySearch.albums.items.length;
     let listInformation = albumsBySearch.albums.items;
@@ -85,6 +87,7 @@ let processInformation = async (albumsBySearch) => {
     return schemaList;
 }
 
+//Esta función se encarga de almacenar la información en la base de datos MongoDB
 let saveInformation = async (schemaList) => {
     let result;
     schemaList.forEach(async schema => {
@@ -94,6 +97,7 @@ let saveInformation = async (schemaList) => {
     return result;
 }
 
+//Esta función se encarga de traer la información en la base de datos MongoDB
 let loadInformation= async () => {
     const albumsFromDb = new Albums();
     return await albumsFromDb.find();

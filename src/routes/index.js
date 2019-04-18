@@ -2,10 +2,10 @@ const express = require('express')
 const router = express.Router();
 const searchMusic = require('../app/searchMusic')
 
-router.get('/', (req, res) => {
-    //res.send('Hello world')
+router.get('/', (req, res) => {    
     res.render('index')
 })
+
 
 router.get('/home', async (req, res) => {
     res.render('home')
@@ -26,7 +26,5 @@ router.post('/search', async (req, res) => {
     } 
     res.render('home', context)
 })
-
-
 
 module.exports = router;
